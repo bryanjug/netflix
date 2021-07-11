@@ -1,7 +1,15 @@
 import Link from 'next/link'
 import articleStyle from '../styles/Article.module.css';
 
-const ArticleItem = ({article}) => {
+interface Props {
+    article: {
+        id: number;
+        title: string;
+        excerpt: string;
+    }
+}
+
+const ArticleItem:React.FC<Props> = ({article}) => {
     return (
         <Link href="/article/[id]" as={`/article/${article.id}`}>
             <a className={articleStyle.card}>

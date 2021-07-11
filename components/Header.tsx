@@ -1,6 +1,6 @@
 import headerStyles from '../styles/Header.module.css'
 
-function Header() {
+const Header:React.FC = () => {
     const x = 4;
     return (
         <div>
