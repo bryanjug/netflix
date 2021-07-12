@@ -1,6 +1,6 @@
 import Meta from '../components/Meta'
 
-const about = () => {
+const about:React.FC = () => {
     return (
         <div>
             <Meta title={'About'}/>

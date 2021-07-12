@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import {articles} from '../../../data'
 
-export default function handler({query: {id}}, res) {
+export default function handler({query: {id}}: NextApiRequest, res: NextApiResponse) {
     const filtered = articles.filter(article => article.id === id)
 
     if (filtered.length > 0) {

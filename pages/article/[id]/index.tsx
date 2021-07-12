@@ -1,9 +1,18 @@
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import {server} from '../../../config'
 import Link from 'next/link'
 import Meta from '../../../components/Meta'
 // import {useRouter} from 'next/router'
 
-const article = ({article}) => {
+interface ArticleProps {
+    article: {
+        title: string;
+        excerpt: string;
+        body: string;
+    }
+}
+
+const article:React.FC<ArticleProps> = ({article}) => {
     // const router = useRouter()
     // const {id} = router.query
 
@@ -21,7 +30,7 @@ const article = ({article}) => {
 //static
 //static is good for websites using no data fetching
 //loads HTML after data is fetched
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
     const res = await fetch(`${server}/api/articles/${context.params.id}`)
 
     const article = await res.json()
@@ -37,7 +46,7 @@ export const getStaticProps = async (context) => {
 }
 
 //used for moving ids to different pages / routes
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
     const res = await fetch(`${server}/api/articles`)
 
     const articles = await res.json()
@@ -59,7 +68,7 @@ export const getStaticPaths = async () => {
 }
 
 //static
-// export const getStaticProps = async (context) => {
+// export const getStaticProps: GetStaticProps = async (context) => {
 //     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`)
 
 //     const article = await res.json()
@@ -71,7 +80,7 @@ export const getStaticPaths = async () => {
 //     }
 // }
 
-// export const getStaticPaths = async () => {
+// export const getStaticPaths: GetStaticPaths = async () => {
 //     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/`)
 
 //     const articles = await res.json()
@@ -95,7 +104,7 @@ export const getStaticPaths = async () => {
 //server
 //HTML is generated on each request
 //on each request, data is fetched and HTML is generated
-// export const getServerSideProps = async (context) => {
+// export const getServerSideProps: GetServerSideProps = async (context) => {
 //     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`)
 //     const article = await res.json()
 
